@@ -9,36 +9,24 @@ namespace SmartSchool.WebAPI.Controllers;
 [Route("api/[controller]")]
 public class AlunoController : ControllerBase
 {
-    private readonly DataContext _context;
     public readonly IRepository _repo;
 
-    public AlunoController(DataContext context, IRepository repo)
+    public AlunoController(IRepository repo)
     {
         _repo = repo;
-        _context = context;
     }
 
     [HttpGet]
     public IActionResult Get()
     {
-        return Ok(_context.Alunos);
+        var result = _repo.GetAllAlunos(true);
+        return Ok(result);
     }
 
-    [HttpGet("byId/{id}")]
+    [HttpGet("{id}")]
     public IActionResult GetById(int id)
     {
-        var aluno = _context.Alunos.FirstOrDefault(a => a.Id == id);
-        if (aluno == null) return BadRequest("O aluno não foi encontrado.");
-
-        return Ok(aluno);
-    }
-
-    [HttpGet("ByNome")]
-    public IActionResult GetByName(string nome, string sobrenome)
-    {
-        var aluno = _context.Alunos.FirstOrDefault(a =>
-            a.Nome.Contains(nome) && a.Sobrenome.Contains(sobrenome)
-        );
+        var aluno = _repo.GetAlunoById(id);
         if (aluno == null) return BadRequest("O aluno não foi encontrado.");
 
         return Ok(aluno);
@@ -61,7 +49,7 @@ public class AlunoController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult Put(int id, Aluno aluno)
     {
-        var alunoById = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
+        var alunoById = _repo.GetAlunoById(id);
         if (alunoById == null) return BadRequest("Aluno não encontrado");
         if (alunoById.Id != aluno.Id) return BadRequest("O id do aluno incorreto");
 
@@ -77,7 +65,7 @@ public class AlunoController : ControllerBase
     [HttpPatch("{id}")]
     public IActionResult Patch(int id, Aluno aluno)
     {
-        var alunoById = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
+        var alunoById = _repo.GetAlunoById(id);
         if (alunoById == null) return BadRequest("Aluno não encontrado");
         if (alunoById.Id != aluno.Id) return BadRequest("O id do aluno incorreto");
 
@@ -93,7 +81,7 @@ public class AlunoController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult Delet(int id)
     {
-        var alunoById = _context.Alunos.FirstOrDefault(a => a.Id == id);
+        var alunoById = _repo.GetAlunoById(id);
         if (alunoById == null) return BadRequest("Aluno não encontrado");
 
         _repo.Delete(alunoById);
