@@ -2,5 +2,5 @@ SmartSchool.db
 /Migrations
 .vs
 .vscode
-/bin
-/obj
+bin/
+obj/
