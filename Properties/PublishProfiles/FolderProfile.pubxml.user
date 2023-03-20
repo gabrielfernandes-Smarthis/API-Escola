@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>\\192.168.15.250\APIs\SmartSchoolAPI</_PublishTargetUrl>
+    <History>True|2023-03-12T22:43:54.1300403Z;False|2023-03-12T19:42:10.3106878-03:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>
