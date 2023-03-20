@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SmartSchool.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:SmartSchool.WebAPI.Controllers.AlunoController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartSchool.WebAPI.Controllers.AlunoController.#ctor(SmartSchool.WebAPI.Data.IRepository,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="repo"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:SmartSchool.WebAPI.Controllers.AlunoController.Get">
+            <summary>
+            Metodo responsavel para retornar todos os meus alunos
+            </summary>
+            <returns>Alunos</returns>
+        </member>
+        <member name="M:SmartSchool.WebAPI.Controllers.AlunoController.GetById(System.Int32)">
+            <summary>
+            Metodo responsavel por retornar apenas um unico Aluno por meio do Id 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SmartSchool.WebAPI.Dtos.AlunoDto.Id">
+            <summary>
+            Identificador chave do banco de dados
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.Dtos.AlunoDto.Matricula">
+            <summary>
+            Numero da matricula que o aluno possui
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.Dtos.AlunoDto.Nome">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SmartSchool.WebAPI.Dtos.AlunoRegistrarDto">
+            <summary>
+            Esse e o DTO do aluno para registar seus dados.
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.Dtos.AlunoRegistrarDto.Id">
+            <summary>
+            Identificador chave do banco de dados
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.Dtos.AlunoRegistrarDto.Matricula">
+            <summary>
+            Numero da matricula que o aluno possui
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.Dtos.AlunoRegistrarDto.Nome">
+            <summary>
+            Nome do aluno retorna seu primeiro nome e seu sobrenome registrados
+            </summary>
+        </member>
+        <member name="T:SmartSchool.WebAPI.Migrations.inicial">
+            <inheritdoc />
+        </member>
+        <member name="M:SmartSchool.WebAPI.Migrations.inicial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SmartSchool.WebAPI.Migrations.inicial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SmartSchool.WebAPI.Migrations.inicial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

@@ -8,7 +8,8 @@ using SmartSchool.WebAPI.Models;
 namespace SmartSchool.WebAPI.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[ApiVersion("2.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class ProfessorController : ControllerBase
 {
     public readonly IRepository _repo;

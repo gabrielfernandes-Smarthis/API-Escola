@@ -7,19 +7,32 @@ using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Controllers;
 
+/// <summary>
+/// 
+/// </summary>
 [ApiController]
-[Route("api/[controller]")]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class AlunoController : ControllerBase
 {
     public readonly IRepository _repo;
     public readonly IMapper _mapper;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="repo"></param>
+    /// <param name="mapper"></param>
     public AlunoController(IRepository repo, IMapper mapper)
     {
         _mapper = mapper;
         _repo = repo;
     }
 
+    /// <summary>
+    /// Metodo responsavel para retornar todos os meus alunos
+    /// </summary>
+    /// <returns>Alunos</returns>
     [HttpGet]
     public IActionResult Get()
     {
@@ -28,6 +41,11 @@ public class AlunoController : ControllerBase
         return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
     }
 
+    /// <summary>
+    /// Metodo responsavel por retornar apenas um unico Aluno por meio do Id 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpGet("{id}")]
     public IActionResult GetById(int id)
     {
