@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SmartSchool.WebAPI.Helpers;
 using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Data;
@@ -31,7 +32,7 @@ public class Repository : IRepository
         return (_context.SaveChanges() > 0);
     }
 
-    //METODOS DO ALUNO
+//METODOS DO ALUNO
 #region Aluno
     public Aluno[] GetAllAlunos(bool incluiProfessor = false)
     {
@@ -48,6 +49,37 @@ public class Repository : IRepository
         return query.ToArray();
     }
 
+    public async Task<PageList<Aluno>> GetAllAlunosAsync(PageParams pageParams, bool incluiProfessor = false)
+    {
+        IQueryable<Aluno> query = _context.Alunos;
+
+        if (incluiProfessor)
+        {
+            query = query.Include(a => a.AlunosDiciplinas)
+                         .ThenInclude(ad => ad.Disciplina)
+                         .ThenInclude(d => d.Professor);
+        }
+
+        query = query.AsNoTracking().OrderBy(a => a.Id);
+
+        if (!string.IsNullOrEmpty(pageParams.Nome))
+        {
+            query = query.Where(aluno => aluno.Nome
+                                              .ToUpper()
+                                              .Contains(pageParams.Nome.ToUpper()) ||
+                                         aluno.Sobrenome
+                                              .ToUpper()
+                                              .Contains(pageParams.Nome.ToUpper())
+                                );
+        }
+
+        if (pageParams.Matricula > 0)
+            query = query.Where(aluno => aluno.Matricula == pageParams.Matricula);
+        if (pageParams.Ativo != null)
+            query = query.Where(aluno => aluno.Ativo == pageParams.Ativo);
+
+        return await PageList<Aluno>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
+    }
 
     public Aluno GetAlunoById(int alunoId, bool incluiProfessor = false)
     {
@@ -83,7 +115,7 @@ public class Repository : IRepository
     }
 #endregion
 
-    //METODOS DO PROFESSOR
+//METODOS DO PROFESSOR
 #region Professor
     
     public Professor[] GetAllProfessores(bool incluiAluno = false)

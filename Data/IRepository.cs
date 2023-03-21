@@ -1,3 +1,4 @@
+using SmartSchool.WebAPI.Helpers;
 using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Data;
@@ -10,6 +11,7 @@ public interface IRepository
     bool SaveChanges();
 
     //METODOS DO ALUNO
+    Task<PageList<Aluno>> GetAllAlunosAsync(PageParams pageParams, bool incluiProfessor = false);
     Aluno[] GetAllAlunos(bool incluiProfessor = false);    
     Aluno[] GetAllAlunosByDisciplinaId(int alunoId, bool incluiProfessor = false);    
     Aluno GetAlunoById(int disciplinaId, bool incluiProfessor = false);    

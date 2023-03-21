@@ -16,7 +16,7 @@
             <param name="repo"></param>
             <param name="mapper"></param>
         </member>
-        <member name="M:SmartSchool.WebAPI.Controllers.AlunoController.Get">
+        <member name="M:SmartSchool.WebAPI.Controllers.AlunoController.Get(SmartSchool.WebAPI.Helpers.PageParams)">
             <summary>
             Metodo responsavel para retornar todos os meus alunos
             </summary>
@@ -26,7 +26,6 @@
             <summary>
             Metodo responsavel por retornar apenas um unico Aluno por meio do Id 
             </summary>
-            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="P:SmartSchool.WebAPI.Dtos.AlunoDto.Id">
